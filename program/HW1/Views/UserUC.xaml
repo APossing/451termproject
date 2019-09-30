@@ -1,0 +1,180 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HW1.Views"
+             xmlns:ViewModels="clr-namespace:HW1.ViewModels" x:Class="HW1.Views.UserUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="860" d:DesignWidth="1080">
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="72*"/>
+            <ColumnDefinition Width="995*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border BorderBrush="#FF000FFF"  BorderThickness="1,1,1,2" HorizontalAlignment="Left" Height="162" Margin="10,10,0,0" VerticalAlignment="Top" Width="270" CornerRadius="10" Background="Black" Grid.ColumnSpan="2">
+            <Grid>
+                <ListBox DisplayMemberPath="id" HorizontalAlignment="Stretch" Margin="10,46,10,10" VerticalAlignment="Stretch" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}"/>
+                <!-- ListBox ItemsSource ="{Binding Cities}" DisplayMemberPath="Name"
+                                SelectedItem="{Binding SelectedCity}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="177" Margin="9,84,10,0" Height="120"-->
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding SelectedUserName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="135,10,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="123" FontSize="15" Foreground="White"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#FF000FFF" BorderThickness="1" HorizontalAlignment="Left" Height="431" Margin="213,10,0,0" VerticalAlignment="Top" Width="285" Background="Black" CornerRadius="10" Grid.Column="1">
+            <Grid>
+                <DataGrid Margin="10,33,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding Friends}" IsReadOnly="true" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Width="90" Binding="{Binding userName}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Name"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="65" Binding="{Binding average_stars}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Avrg Stars"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="150" Binding="{Binding dataJoined}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Yelping Since"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Friends" VerticalAlignment="Top" Width="123" FontSize="15" Foreground="White"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#FF000FFF"  BorderThickness="1" HorizontalAlignment="Left" Height="264" Margin="10,177,0,0" VerticalAlignment="Top" Width="270" CornerRadius="10" Background="Black" Grid.ColumnSpan="2">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="User Information" VerticalAlignment="Top" Width="120" FontSize="15" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,33,0,0" TextWrapping="Wrap" Text="Name " VerticalAlignment="Top" Width="80" FontSize="15" Foreground="White"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="60,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Text="{Binding SelectedUser.userName}" Focusable="False"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,61,0,0" TextWrapping="Wrap" Text="Stars" VerticalAlignment="Top" Width="80" FontSize="15" Foreground="White"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="60,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="72" Text="{Binding SelectedUser.average_stars}" Focusable="False"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="137,61,0,0" TextWrapping="Wrap" Text="Fans" VerticalAlignment="Top" Width="80" FontSize="15" Foreground="White"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="186,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="72" Text="{Binding SelectedUser.fans}" Focusable="False"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,89,0,0" TextWrapping="Wrap" Text="Yelping Since " VerticalAlignment="Top" Width="91" FontSize="15" Foreground="White"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="106,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Text="{Binding SelectedUser.dataJoined}" Focusable="False"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="60,117,0,0" TextWrapping="Wrap" Text="Funny" VerticalAlignment="Top" Width="60" FontSize="15" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="130,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" FontSize="15" Foreground="White"><Run Text="Cool"/><LineBreak/><Run/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="198,117,0,0" TextWrapping="Wrap" Text="Useful" VerticalAlignment="Top" Width="60" FontSize="15" Foreground="White" RenderTransformOrigin="0.428,0.536"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="60,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60" Text="{Binding SelectedUser.funny}" Focusable="False"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="130,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60" Text="{Binding SelectedUser.cool}" RenderTransformOrigin="0.5,0.5" Focusable="False">
+                    <TextBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.221"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="198,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60" Text="{Binding SelectedUser.useful}" Focusable="False"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,140,0,0" TextWrapping="Wrap" Text="Votes" VerticalAlignment="Top" Width="80" FontSize="15" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="60,168,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="91" FontSize="15" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,196,0,0" TextWrapping="Wrap" Text="Lat" VerticalAlignment="Top" Width="80" FontSize="15" Foreground="White"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="60,196,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="112" Text="{Binding SelectedUser.latitude}" IsReadOnly="{Binding NotEditable}" />
+                <Button Content="Edit" HorizontalAlignment="Left" Margin="183,196,0,0" VerticalAlignment="Top" Width="75" Height="23" Command="{Binding EditButtonClickCommand}"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="60,224,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="112" Text="{Binding SelectedUser.longitude}" IsReadOnly="{Binding NotEditable}"/>
+                <Button Content="Update" HorizontalAlignment="Left" Margin="183,224,0,0" VerticalAlignment="Top" Width="75" Height="23" Command="{Binding UpdateButtonClickCommand}"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" FontSize="15" Foreground="White" Text="Long"/>
+
+            </Grid>
+        </Border>
+        <Border BorderBrush="#FF000FFF" BorderThickness="1,1,2,1" HorizontalAlignment="Left" Height="782" Margin="503,10,0,0" VerticalAlignment="Top" Width="482" Background="Black" CornerRadius="10" Grid.Column="1">
+            <Grid>
+                <DataGrid Margin="10,40,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="true" ItemsSource="{Binding FriendsReviewBusinessRows}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Width="90" Binding="{Binding UserName}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="User Name"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="120" Binding="{Binding BusinessName}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Business"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="80" Binding="{Binding City}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="City"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="150" Binding="{Binding Text}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Text"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="What are my friends reviewing?" VerticalAlignment="Top" Width="429" FontSize="15" Foreground="White"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#FF000FFF" BorderThickness="1" HorizontalAlignment="Left" Height="318" Margin="10,446,0,0" VerticalAlignment="Top" Width="560" Background="Black" CornerRadius="10" Grid.ColumnSpan="2">
+            <Grid>
+                <DataGrid Margin="10,40,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding FavoriteBusinesses}" SelectedItem="{Binding SelectedFavoriteBusiness}" IsReadOnly="true" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Width="160" Binding="{Binding Name}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Business Name"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="40" Binding="{Binding Rating}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Stars"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="80" Binding="{Binding CityName}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="City"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="55" Binding="{Binding Zipcode}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Zipcode"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding Address}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Address"/>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Favourite Businesses" VerticalAlignment="Top" Width="304" FontSize="15" Foreground="White"/>
+            </Grid>
+        </Border>
+        <Button Content="Remove from Favorites" HorizontalAlignment="Left" Margin="10,769,0,0" VerticalAlignment="Top" Width="560" Height="23" Grid.ColumnSpan="2" Command="{Binding RemoveFromFavoritesClickCommand}"/>
+    </Grid>
+</UserControl>

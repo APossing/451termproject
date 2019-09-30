@@ -1,0 +1,72 @@
+SELECT COUNT(*) FROM attributes;
+SELECT COUNT(*) FROM belongstocategory;
+SELECT COUNT(*) FROM business;
+SELECT COUNT(*) FROM checkin;
+SELECT COUNT(*) FROM friends;
+SELECT COUNT(*) FROM friendship;
+SELECT COUNT(*) FROM hours;
+SELECT COUNT(*) FROM review;
+SELECT COUNT(*) FROM users;
+ 
+project=>  SELECT COUNT(*) FROM attributes;
+ count
+--------
+ 104971
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM belongstocategory;
+ count
+-------
+ 33619
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM business;
+ count
+-------
+ 11481
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM checkin;
+ count
+--------
+ 481361
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM friends;
+
+  count
+---------
+ 1052706
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM friendship;
+ count
+-------
+ 1052706
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM hours;
+ count
+-------
+ 55502
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM review;
+ count
+--------
+ 415585
+(1 row)
+
+project=>
+project=>  SELECT COUNT(*) FROM users;
+ count
+--------
+ 192999
+(1 row)
